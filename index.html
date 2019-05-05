@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="JS/jquery-1.11.3.min.js"></script>
+	<script src="JS/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 900px;height:700px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+		
+		myChart.showLoading();
+		$.getJSON('json.json', function (data) {
+		myChart.hideLoading();
+
+		myChart.setOption(option = {
+			tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+			series: [
+            {
+                type: 'tree',
+
+                data: [data],
+
+                top: '18%',
+                bottom: '14%',
+
+                layout: 'radial',
+
+                symbol: 'emptyCircle',
+
+                symbolSize: 7,
+
+                initialTreeDepth: 3,
+
+                animationDurationUpdate: 750
+
+            }
+        ]
+    });
+});
+    </script>
+</body>
+
+</html>
