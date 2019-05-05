@@ -14,7 +14,7 @@
         var myChart = echarts.init(document.getElementById('main'));
 		
 		myChart.showLoading();
-		$.getJSON('json.json', function (data) {
+		$.getJSON('data/json.json', function (data) {
 		myChart.hideLoading();
 
 		myChart.setOption(option = {
