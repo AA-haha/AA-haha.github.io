@@ -1,0 +1,53 @@
+{
+  "name":"小住房改造",
+  "children":[
+    {
+      "name":"业主需求",
+      "children":[
+        {
+          "name":"爸爸",
+          "children":[
+            {"name":"浴室要大，足够一个大人和孩子共同在里面","value": 0},
+            {"name":"室内有地方洗漱","value": 0}
+          ]
+        },
+        {
+          "name":"妈妈",
+          "children":[
+            {"name":"室内可以放洗手间","value": 0},
+            {"name":"需要储物空间","value": 0},
+            {"name":"层高更高","value": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "name":"设计师原则",
+      "children":[
+        {
+          "name":"政策",
+          "children":[
+            {"name":"违章建筑拆除","value": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "name":"房屋条件",
+      "children":[
+        {
+          "name":"概述",
+          "children":[
+            {"name":"老平房，一层带阁楼","value": 0}
+          ]
+        },
+        {
+          "name":"面积",
+          "children":[
+            {"name":"13平方米","value": 0}
+          ]
+        }
+      ]
+    }
+  ]
+}
