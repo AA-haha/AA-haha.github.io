@@ -20,7 +20,7 @@
 
 	myChart.showLoading();
 
-	$.get('data/china.json', function (chinaJson) {
+	$.get('china.json', function (chinaJson) {
 		myChart.hideLoading();
 		echarts.registerMap('china', chinaJson);
 		var data =[
