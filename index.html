@@ -1,51 +1,462 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <!-- 引入 ECharts 文件 -->
-    <script src="JS/jquery-1.11.3.min.js"></script>
-	<script src="JS/echarts.min.js"></script>
-</head>
-<body>
-    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 900px;height:700px;"></div>
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-		
-		myChart.showLoading();
-		$.getJSON('data/json.json', function (data) {
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Demo</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="echarts.js"></script>
+
+ </head>
+ <body>
+  <div id="main" style="width:1200px;height:800px;margin:0 auto;"></div>
+  <script type="text/javascript">
+	var chartDom = document.getElementById('main');
+	var myChart = echarts.init(chartDom);
+	var option;
+
+	myChart.showLoading();
+
+	$.get('data/china.json', function (chinaJson) {
 		myChart.hideLoading();
+		echarts.registerMap('china', chinaJson);
+		var data =[
+			{name: '西双版纳傣族自治州', value: 2094.83394},
+			{name: '保亭黎族苗族自治县', value: 1955.847218},
+			{name: '琼中黎族苗族自治县', value: 1680.56913},
+			{name: '五指山市', value: 1931.023365},
+			{name: '三亚市', value: 1613.554516},
+			{name: '白沙黎族自治县', value: 1765.752277},
+			{name: '万宁市', value: 1529.326227},
+			{name: '乐东黎族自治县', value: 1805.45885},
+			{name: '屯昌县', value: 1502.853733},
+			{name: '琼海市', value: 1455.771508},
+			{name: '陵水黎族自治县', value: 1414.532214},
+			{name: '台湾省', value: 1317.220335},
+			{name: '昌江黎族自治县', value: 1387.486904},
+			{name: '东方市', value: 1560.011014},
+			{name: '普洱市', value: 1619.69328},
+			{name: '三明市', value: 1363.305883},
+			{name: '龙岩市', value: 1411.659966},
+			{name: '南平市', value: 1338.870201},
+			{name: '定安县', value: 1344.483966},
+			{name: '澄迈县', value: 1319.044038},
+			{name: '河源市', value: 1315.323771},
+			{name: '德宏傣族景颇族自治州', value: 1413.310152},
+			{name: '宁德市', value: 1201.301316},
+			{name: '韶关市', value: 1232.969312},
+			{name: '丽水市', value: 1091.802486},
+			{name: '肇庆市', value: 1274.29382},
+			{name: '儋州市', value: 1284.642946},
+			{name: '惠州市', value: 1258.495213},
+			{name: '清远市', value: 1207.802437},
+			{name: '福州市', value: 1150.853762},
+			{name: '文昌市', value: 1086.032783},
+			{name: '梅州市', value: 1231.315862},
+			{name: '梧州市', value: 1363.354412},
+			{name: '防城港市', value: 1290.586755},
+			{name: '贺州市', value: 1182.549938},
+			{name: '阳江市', value: 1336.306772},
+			{name: '海口市', value: 1053.088895},
+			{name: '赣州市', value: 1186.661794},
+			{name: '临高县', value: 1256.766622},
+			{name: '温州市', value: 1019.312638},
+			{name: '云浮市', value: 1221.692881},
+			{name: '台州市', value: 953.483646},
+			{name: '临沧市', value: 1255.83824},
+			{name: '景德镇市', value: 1109.841444},
+			{name: '抚州市', value: 1124.634702},
+			{name: '汕尾市', value: 1136.651688},
+			{name: '红河哈尼族彝族自治州', value: 1159.841356},
+			{name: '漳州市', value: 1184.650104},
+			{name: '莆田市', value: 1045.088994},
+			{name: '黄山市', value: 1098.218219},
+			{name: '茂名市', value: 1254.529307},
+			{name: '吉安市', value: 1042.393146},
+			{name: '衢州市', value: 1009.103026},
+			{name: '泉州市', value: 1021.681067},
+			{name: '揭阳市', value: 1014.890026},
+			{name: '桂林市', value: 966.701466},
+			{name: '江门市', value: 1122.35149},
+			{name: '潮州市', value: 1084.783624},
+			{name: '玉溪市', value: 1068.132909},
+			{name: '鹰潭市', value: 1038.181678},
+			{name: '上饶市', value: 1094.721681},
+			{name: '广州市', value: 1095.750386},
+			{name: '崇左市', value: 1178.174157},
+			{name: '柳州市', value: 1018.910018},
+			{name: '百色市', value: 1024.958936},
+			{name: '宜春市', value: 977.714413},
+			{name: '郴州市', value: 841.711167},
+			{name: '宁波市', value: 856.072921},
+			{name: '玉林市', value: 1208.804059},
+			{name: '保山市', value: 1042.43506},
+			{name: '杭州市', value: 925.186357},
+			{name: '萍乡市', value: 842.595527},
+			{name: '金华市', value: 862.947132},
+			{name: '池州市', value: 964.428198},
+			{name: '株洲市', value: 797.42164},
+			{name: '绍兴市', value: 821.532142},
+			{name: '九江市', value: 875.723973},
+			{name: '钦州市', value: 1141.417641},
+			{name: '长沙市', value: 753.178807},
+			{name: '厦门市', value: 802.044517},
+			{name: '新余市', value: 815.159443},
+			{name: '攀枝花市', value: 716.838496},
+			{name: '河池市', value: 925.811307},
+			{name: '永州市', value: 817.084561},
+			{name: '六安市', value: 754.314381},
+			{name: '湛江市', value: 944.252759},
+			{name: '文山壮族苗族自治州', value: 925.15389},
+			{name: '咸宁市', value: 813.548709},
+			{name: '贵港市', value: 1052.607463},
+			{name: '南宁市', value: 1015.631548},
+			{name: '怀化市', value: 830.989811},
+			{name: '来宾市', value: 1121.271701},
+			{name: '安康市', value: 690.48886},
+			{name: '宣城市', value: 883.030469},
+			{name: '神农架林区', value: 706.676011},
+			{name: '楚雄彝族自治州', value: 948.065143},
+			{name: '张家界市', value: 758.300631},
+			{name: '香港特别行政区', value: 343.494867},
+			{name: '汉中市', value: 696.321645},
+			{name: '宜昌市', value: 720.971247},
+			{name: '安庆市', value: 801.102675},
+			{name: '黄冈市', value: 773.294673},
+			{name: '十堰市', value: 679.054736},
+			{name: '随州市', value: 647.282881},
+			{name: '北海市', value: 941.484552},
+			{name: '巴中市', value: 772.115292},
+			{name: '邵阳市', value: 743.042682},
+			{name: '深圳市', value: 742.918969},
+			{name: '湖州市', value: 731.480179},
+			{name: '达州市', value: 667.286237},
+			{name: '岳阳市', value: 782.299312},
+			{name: '襄阳市', value: 665.95352},
+			{name: '信阳市', value: 601.609088},
+			{name: '黔东南苗族侗族自治州', value: 802.416749},
+			{name: '恩施土家族苗族自治州', value: 709.48599},
+			{name: '益阳市', value: 749.665543},
+			{name: '汕头市', value: 601.980181},
+			{name: '大理白族自治州', value: 814.695083},
+			{name: '湘潭市', value: 636.828615},
+			{name: '泰州市', value: 648.913218},
+			{name: '衡阳市', value: 641.017544},
+			{name: '黄石市', value: 692.656017},
+			{name: '常德市', value: 696.953639},
+			{name: '娄底市', value: 670.946132},
+			{name: '南通市', value: 734.641943},
+			{name: '黔西南布依族苗族自治州', value: 747.648176},
+			{name: '商洛市', value: 604.798025},
+			{name: '荆门市', value: 608.938132},
+			{name: '湘西土家族苗族自治州', value: 714.052603},
+			{name: '嘉兴市', value: 602.298533},
+			{name: '孝感市', value: 566.100272},
+			{name: '自贡市', value: 620.921953},
+			{name: '黔南布依族苗族自治州', value: 718.42576},
+			{name: '宜宾市', value: 674.212841},
+			{name: '芜湖市', value: 660.004506},
+			{name: '南阳市', value: 550.583996},
+			{name: '乐山市', value: 684.952235},
+			{name: '天门市', value: 559.886297},
+			{name: '合肥市', value: 566.344696},
+			{name: '昆明市', value: 792.13645},
+			{name: '潜江市', value: 563.449393},
+			{name: '泸州市', value: 638.251729},
+			{name: '广元市', value: 615.816917},
+			{name: '重庆市', value: 625.786879},
+			{name: '滁州市', value: 638.329233},
+			{name: '扬州市', value: 592.153291},
+			{name: '内江市', value: 558.518006},
+			{name: '仙桃市', value: 536.300609},
+			{name: '南昌市', value: 731.514131},
+			{name: '淮南市', value: 588.97976},
+			{name: '眉山市', value: 588.171909},
+			{name: '阜阳市', value: 504.343864},
+			{name: '资阳市', value: 497.29371},
+			{name: '遂宁市', value: 467.470465},
+			{name: '铜陵市', value: 670.334348},
+			{name: '马鞍山市', value: 609.03418},
+			{name: '盐城市', value: 571.652205},
+			{name: '驻马店市', value: 439.068648},
+			{name: '镇江市', value: 606.072422},
+			{name: '淮北市', value: 463.863112},
+			{name: '雅安市', value: 558.049612},
+			{name: '成都市', value: 510.527459},
+			{name: '安顺市', value: 651.031904},
+			{name: '铜仁市', value: 576.093453},
+			{name: '亳州市', value: 482.054459},
+			{name: '广安市', value: 533.323201},
+			{name: '佛山市', value: 679.126064},
+			{name: '南充市', value: 508.378026},
+			{name: '遵义市', value: 567.55108},
+			{name: '南京市', value: 561.478368},
+			{name: '怒江傈僳族自治州', value: 613.61766},
+			{name: '凉山彝族自治州', value: 578.355227},
+			{name: '常州市', value: 554.570271},
+			{name: '中山市', value: 573.265942},
+			{name: '荆州市', value: 519.789876},
+			{name: '绵阳市', value: 485.608327},
+			{name: '德阳市', value: 477.71249},
+			{name: '宿州市', value: 453.431114},
+			{name: '周口市', value: 435.844162},
+			{name: '淮安市', value: 481.181976},
+			{name: '曲靖市', value: 661.301712},
+			{name: '东莞市', value: 688.746822},
+			{name: '商丘市', value: 429.540354},
+			{name: '徐州市', value: 391.073381},
+			{name: '武汉市', value: 481.118571},
+			{name: '丽江市', value: 630.461077},
+			{name: '六盘水市', value: 626.10895},
+			{name: '昭通市', value: 598.217095},
+			{name: '蚌埠市', value: 469.023132},
+			{name: '漯河市', value: 430.145845},
+			{name: '无锡市', value: 521.878737},
+			{name: '贵阳市', value: 553.401109},
+			{name: '宿迁市', value: 395.061075},
+			{name: '济宁市', value: 329.921401},
+			{name: '西安市', value: 436.038514},
+			{name: '枣庄市', value: 346.893212},
+			{name: '鄂州市', value: 524.314548},
+			{name: '上海市', value: 492.657801},
+			{name: '菏泽市', value: 365.225744},
+			{name: '连云港市', value: 382.851589},
+			{name: '迪庆藏族自治州', value: 482.76315},
+			{name: '许昌市', value: 392.872804},
+			{name: '临沂市', value: 301.653079},
+			{name: '泰安市', value: 303.256801},
+			{name: '陇南市', value: 426.628726},
+			{name: '聊城市', value: 339.033772},
+			{name: '宝鸡市', value: 443.567244},
+			{name: '濮阳市', value: 335.557773},
+			{name: '毕节市', value: 527.93128},
+			{name: '珠海市', value: 619.20547},
+			{name: '开封市', value: 352.344366},
+			{name: '苏州市', value: 385.034638},
+			{name: '平顶山市', value: 363.718922},
+			{name: '洛阳市', value: 373.667643},
+			{name: '新乡市', value: 343.866467},
+			{name: '丹东市', value: 437.247174},
+			{name: '三门峡市', value: 386.595618},
+			{name: '焦作市', value: 313.353483},
+			{name: '本溪市', value: 380.149768},
+			{name: '鹤壁市', value: 311.070671},
+			{name: '济南市', value: 281.725903},
+			{name: '日照市', value: 261.066783},
+			{name: '淄博市', value: 272.230991},
+			{name: '安阳市', value: 299.366752},
+			{name: '德州市', value: 357.877079},
+			{name: '抚顺市', value: 326.290455},
+			{name: '潍坊市', value: 257.329035},
+			{name: '济源市', value: 331.513792},
+			{name: '邯郸市', value: 266.260419},
+			{name: '晋城市', value: 292.89322},
+			{name: '林芝地区', value: 383.66893},
+			{name: '白山市', value: 359.579364},
+			{name: '辽阳市', value: 295.68733},
+			{name: '邢台市', value: 267.228746},
+			{name: '青岛市', value: 251.788652},
+			{name: '衡水市', value: 285.52311},
+			{name: '通化市', value: 327.801381},
+			{name: '山南地区', value: 348.954068},
+			{name: '铜川市', value: 298.56576},
+			{name: '鞍山市', value: 352.569319},
+			{name: '滨州市', value: 305.103909},
+			{name: '咸阳市', value: 277.121758},
+			{name: '郑州市', value: 259.169877},
+			{name: '渭南市', value: 271.303178},
+			{name: '阿坝藏族羌族自治州', value: 288.555866},
+			{name: '威海市', value: 249.295788},
+			{name: '石家庄市', value: 277.273628},
+			{name: '运城市', value: 271.72846},
+			{name: '甘孜藏族自治州', value: 280.134154},
+			{name: '北京市', value: 295.217775},
+			{name: '秦皇岛市', value: 299.874904},
+			{name: '烟台市', value: 223.006988},
+			{name: '长治市', value: 253.244968},
+			{name: '延边朝鲜族自治州', value: 324.032742},
+			{name: '营口市', value: 322.3038},
+			{name: '保定市', value: 267.906908},
+			{name: '铁岭市', value: 266.72283},
+			{name: '葫芦岛市', value: 273.683339},
+			{name: '天水市', value: 247.815782},
+			{name: '承德市', value: 292.957876},
+			{name: '唐山市', value: 236.168694},
+			{name: '吉林市', value: 273.799801},
+			{name: '大连市', value: 296.090654},
+			{name: '临汾市', value: 240.409823},
+			{name: '沧州市', value: 250.670229},
+			{name: '廊坊市', value: 217.207936},
+			{name: '甘南藏族自治州', value: 209.686789},
+			{name: '阳泉市', value: 263.319989},
+			{name: '晋中市', value: 240.235662},
+			{name: '牡丹江市', value: 297.371649},
+			{name: '沈阳市', value: 218.972663},
+			{name: '盘锦市', value: 226.650305},
+			{name: '锦州市', value: 212.442951},
+			{name: '伊春市', value: 302.2465},
+			{name: '延安市', value: 237.124172},
+			{name: '东营市', value: 236.980248},
+			{name: '天津市', value: 213.372788},
+			{name: '太原市', value: 209.506243},
+			{name: '辽源市', value: 219.520385},
+			{name: '哈尔滨市', value: 250.366623},
+			{name: '昌都地区', value: 200.362952},
+			{name: '平凉市', value: 202.78972},
+			{name: '吕梁市', value: 194.509509},
+			{name: '阜新市', value: 192.849895},
+			{name: '朝阳市', value: 232.416489},
+			{name: '四平市', value: 199.716021},
+			{name: '七台河市', value: 223.224855},
+			{name: '长春市', value: 197.083172},
+			{name: '忻州市', value: 163.439978},
+			{name: '双鸭山市', value: 221.258115},
+			{name: '鹤岗市', value: 223.854213},
+			{name: '黑河市', value: 214.732421},
+			{name: '黄南藏族自治州', value: 149.576567},
+			{name: '庆阳市', value: 171.55078},
+			{name: '绥化市', value: 203.109933},
+			{name: '张家口市', value: 177.436778},
+			{name: '鸡西市', value: 212.490616},
+			{name: '定西市', value: 146.213908},
+			{name: '伊犁哈萨克自治州', value: 133.478663},
+			{name: '兴安盟', value: 192.134029},
+			{name: '临夏回族自治州', value: 115.78973},
+			{name: '大同市', value: 143.655715},
+			{name: '中朝共有', value: 272.468666},
+			{name: '松原市', value: 174.308209},
+			{name: '佳木斯市', value: 186.904022},
+			{name: '通辽市', value: 151.302234},
+			{name: '呼伦贝尔市', value: 173.358612},
+			{name: '齐齐哈尔市', value: 184.620616},
+			{name: '西宁市', value: 117.931524},
+			{name: '大庆市', value: 166.715781},
+			{name: '朔州市', value: 132.137103},
+			{name: '石河子市', value: 105.044904},
+			{name: '海东市', value: 98.713031},
+			{name: '白城市', value: 151.324854},
+			{name: '可克达拉市', value: 139.086564},
+			{name: '固原市', value: 126.118087},
+			{name: '赤峰市', value: 139.629879},
+			{name: '双河市', value: 171.134774},
+			{name: '果洛藏族自治州', value: 97.838825},
+			{name: '海北藏族自治州', value: 97.317499},
+			{name: '拉萨市', value: 77.842146},
+			{name: '海南藏族自治州', value: 87.68912},
+			{name: '兰州市', value: 61.976729},
+			{name: '呼和浩特市', value: 103.468618},
+			{name: '五家渠市', value: 78.407907},
+			{name: '铁门关市', value: 85.576629},
+			{name: '胡杨河市', value: 108.172364},
+			{name: '银川市', value: 81.042466},
+			{name: '乌兰察布市', value: 72.819679},
+			{name: '榆林市', value: 99.332644},
+			{name: '玉树藏族自治州', value: 66.324683},
+			{name: '北屯市', value: 68.490388},
+			{name: '乌鲁木齐市', value: 58.124438},
+			{name: '博尔塔拉蒙古自治州', value: 65.097546},
+			{name: '白银市', value: 57.090226},
+			{name: '中卫市', value: 61.191993},
+			{name: '塔城地区', value: 64.773244},
+			{name: '锡林郭勒盟', value: 80.458273},
+			{name: '吴忠市', value: 61.626768},
+			{name: '图木舒克市', value: 71.456217},
+			{name: '包头市', value: 57.972618},
+			{name: '石嘴山市', value: 72.337156},
+			{name: '阿勒泰地区', value: 54.381629},
+			{name: '张掖市', value: 53.257652},
+			{name: '武威市', value: 45.751125},
+			{name: '阿拉尔市', value: 69.464141},
+			{name: '日喀则地区', value: 44.366377},
+			{name: '昌吉回族自治州', value: 53.92263},
+			{name: '鄂尔多斯市', value: 58.397151},
+			{name: '金昌市', value: 47.061543},
+			{name: '那曲地区', value: 39.246014},
+			{name: '巴彦淖尔市', value: 35.692152},
+			{name: '阿克苏地区', value: 22.519964},
+			{name: '昆玉市', value: 37.146528},
+			{name: '喀什地区', value: 21.813956},
+			{name: '乌海市', value: 37.61075},
+			{name: '克孜勒苏柯尔克孜自治州', value: 22.792109},
+			{name: '海西蒙古族藏族自治州', value: 22.370105},
+			{name: '克拉玛依市', value: 26.729169},
+			{name: '阿里地区', value: 16.196354},
+			{name: '巴音郭楞蒙古自治州', value: 11.642036},
+			{name: '嘉峪关市', value: 14.61996},
+			{name: '哈密地区', value: 8.345889},
+			{name: '吐鲁番地区', value: 7.350116},
+			{name: '酒泉市', value: 7.47189},
+			{name: '和田地区', value: 7.345997},
+			{name: '阿拉善盟', value: 4.800957},
+			{name: '舟山市', value: 795.662565}
+		];
+		data.sort(function (a, b) {
+		return a.value - b.value;
+		});
 
-		myChart.setOption(option = {
-			tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove'
-        },
+		const mapOption = {
+			visualMap: {
+				left: 'right',
+				min: 0,
+				max: 2000,
+				inRange: {
+					// prettier-ignore
+					color: ['#7800FF', '#1A94F3','#4AF1CF','#B4F194', '#FF934D','#FF0000']
+				},
+				text: ['High', 'Low'],
+				calculable: true
+			},
 			series: [
-            {
-                type: 'tree',
+			  {
+				id: 'carbon sin 2015',
+				type: 'map',
+				roam: true,
+				map: 'china',
+				animation: true,
+				animationDurationUpdate: 1500,
+				universalTransition: true,
+				data: data
+			  }
+			]
+		};
 
-                data: [data],
+		const barOption = {
+			xAxis: {
+				type: 'value'
+			},
+			yAxis: {
+				type: 'category',
+				axisLabel: {
+					rotate: 30
+				},
+				data: data.map(function (item) {
+					return item.name;
+				})
+			},
+			animation: true,
+			animationDurationUpdate: 1500,
+			series: {
+			  type: 'bar',
+			  id: 'carbon sin 2015',
+			  data: data.map(function (item) {
+				return item.value;
+			  }),
+			  universalTransition: true
+			}
+		};
 
-                top: '18%',
-                bottom: '14%',
+		let currentOption = mapOption;
+		myChart.setOption(mapOption);
+		setInterval(function () {
+			currentOption = currentOption === mapOption ? barOption : mapOption;
+			myChart.setOption(currentOption, true);
+		}, 8000)
+	});
 
-                layout: 'radial',
-
-                symbol: 'emptyCircle',
-
-                symbolSize: 7,
-
-                initialTreeDepth: 3,
-
-                animationDurationUpdate: 750
-
-            }
-        ]
-    });
-});
-    </script>
-</body>
-
+	option && myChart.setOption(option);
+  </script>
+ </body>
 </html>
